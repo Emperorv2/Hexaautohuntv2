@@ -1,16 +1,9 @@
-from selenium import webdriver
+from utils.config import POKEMON_TO_CATCH
 from utils.logger import logger
-from utils.config import CONFIG
 
 class Automation:
     def __init__(self):
-        options = webdriver.ChromeOptions()
-        if CONFIG["HEADLESS"]:
-            options.add_argument("--headless")
-        self.driver = webdriver.Chrome(options=options)
+        self.target_pokemon = POKEMON_TO_CATCH
 
     def run(self):
-        logger.info("Starting automation")
-        self.driver.get(CONFIG["SCRAPER_URL"])
-        logger.info("Automation completed")
-        self.driver.quit()
+        logger.info(f"Starting automation for: {', '.join(self.target_pokemon)}")
