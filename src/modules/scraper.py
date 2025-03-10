@@ -1,17 +1,9 @@
-import requests
-from bs4 import BeautifulSoup
+from utils.config import POKEMON_TO_CATCH
 from utils.logger import logger
-from utils.config import CONFIG
 
 class Scraper:
     def __init__(self):
-        self.url = CONFIG["SCRAPER_URL"]
+        self.pokemon_list = POKEMON_TO_CATCH
 
     def run(self):
-        logger.info(f"Scraping {self.url}")
-        response = requests.get(self.url)
-        if response.status_code == 200:
-            soup = BeautifulSoup(response.text, 'html.parser')
-            logger.info("Scraping successful")
-        else:
-            logger.error("Failed to scrape the website")
+        logger.info(f"Pokémon to catch: {', '.join(self.pokemon_list)}")
