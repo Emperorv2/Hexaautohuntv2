@@ -1,14 +1,12 @@
-# Telegram API credentials
-API_ID = 21293406  # Your API ID
-API_HASH = "dbaa72e10301db2908f08347c6333602"  # Your API Hash
+import os
 
-# Phone number for authentication
-PHONE_NUMBER = "+251716958387"  # Your phone number in international format
+# Telegram API Credentials
+API_ID = int(os.getenv("API_ID", 0))
+API_HASH = os.getenv("API_HASH", "")
+PHONE_NUMBER = os.getenv("PHONE_NUMBER", "")
+CHAT_ID = int(os.getenv("CHAT_ID", 0))
 
-# Chat ID for sending messages
-CHAT_ID = 1002433318417  # Your chat ID
-
-# List of Pokémon to catch during auto-hunt
+# List of Pokémon to Catch
 POKEMON_TO_CATCH = [
     "Eternatus", "Zacian", "Dialga", "Palkia", "Mewtwo", "Arceus", "Zamazenta",
     "Glastrier", "Calyrex", "Kyurem", "Lunala", "Necrozma", "Rayquaza",
