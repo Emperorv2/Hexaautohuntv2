@@ -1,15 +1,22 @@
-```python
-from modules.scraper import Scraper
-from modules.automation import Automation
-import utils.logger as logger
+from telethon.sync import TelegramClient
+import time
 
-def main():
-    logger.info("Starting HexaAutohunt")
-    scraper = Scraper()
-    scraper.run()
-    
-    automation = Automation()
-    automation.run()
+# Your Telegram API credentials
+API_ID = 21293406
+API_HASH = "dbaa72e10301db2908f08347c6333602"
+CHAT_ID = -1002433318417  # Hexa game bot chat ID
 
-if __name__ == "__main__":
-    main()
+client = TelegramClient("session", API_ID, API_HASH)
+
+async def auto_hunt():
+    await client.start()
+    print("✅ Auto-Hunt Started!")
+
+    while True:
+        await client.send_message(CHAT_ID, "/hunt")
+        print("📨 Sent /hunt command!")
+        time.sleep(15)  # Adjust delay if needed
+
+# Run auto-hunt
+with client:
+    client.loop.run_until_complete(auto_hunt())
